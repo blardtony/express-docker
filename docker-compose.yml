@@ -1,0 +1,40 @@
+services:
+  database:
+    image: mysql:8.0
+    container_name: database_express
+    restart: always
+    ports:
+      - "3406:3306"
+    volumes:
+      - db-express-data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: express_api
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -u root express_api"]
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - express
+  web:
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    container_name: web
+    depends_on:
+      database:
+        condition: service_healthy
+        restart: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+    restart: always
+    networks:
+      - express
+networks:
+  express:
+
+volumes:
+  db-express-data:
