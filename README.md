@@ -19,3 +19,23 @@ docker-compose up --build
 ```
 
 **--build** This option build images before executing docker compose
+
+## Config vscode
+
+La liste des extensions vscode a installé : 
+- Docker
+- ESLint
+- Prettier
+- REST Client
+- Auto Close Tag
+- Auto Rename Tag
+- GitLens
+- npm Intellisense
+- Path Intellisense
+- JavaScript (ES6) code snippets
+- Sequelize snippets
+- DotENV
+- MySQL Syntax
+- Thunder Client
+- Better Comments
+- Code Spell Checker
